@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu List</title>
+    <link rel="stylesheet" href="{% static 'css/menu_list.css' %}">
+</head>
+<body>
+    <h1>Menu List</h1>
+    <a href="{% url 'adding_dish' %}"><button>Add New Dish</button></a>
+    <a href="{% url 'logout' %}"><button>Logout</button></a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for menu_item in menu_items %}
+            <tr>
+                <td>{{ menu_item.name }}</td>
+                <td>{{ menu_item.description }}</td>
+                <td>{{ menu_item.price }}</td>
+                <td>
+                    <img src="{{ menu_item.image.url }}" alt="{{ menu_item.name }}" width="100" height="100">
+                </td>
+                <td>
+                    <form action="{% url 'delete_menu' menu_item.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No menu items available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

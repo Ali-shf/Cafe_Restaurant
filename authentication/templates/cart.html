@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">About</a></li>
+            <li><a href="/menu/">Menu</a></li>
+            <li><a href="/logout/">Logout</a></li>
+            <li><span>Welcome, {{ user.username }}</span></li>
+            <li><a href="/cart/">Cart ({{ cart_items|length }})</a></li>
+        </ul>
+    </nav>
+
+    <h1>Your Cart</h1>
+    <div class="cart-container">
+        {% if cart_items %}
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <h3>{{ item.dish.name }}</h3>
+                    <p>Price: ${{ item.dish.price }}</p>
+                    <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+            {% endfor %}
+            <hr>
+            <div class="summary">
+                <h3>Summary:</h3>
+                <p><strong>Total Cost:</strong> ${{ total_cost }}</p>
+                <p><strong>GST (18%):</strong> ${{ gst }}</p>
+                <p><strong>Total (including GST):</strong> ${{ total_with_gst }}</p>
+            </div>
+            
+            <form method="POST" action="">
+                {% csrf_token %}
+                <button type="submit" class="place-order-btn">Place Order</button>
+            </form>
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
