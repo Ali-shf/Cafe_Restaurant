@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <li><a href="">About</a></li>
+            <li><a href="/menu/">Menu</a></li>
+            <li><a href="/logout/">Logout</a></li>
+            <li><span>Welcome, {{ user.username }}</span></li>
+            <li><a href="/cart/">Cart ({{ cart_count }})</a></li>
+        </ul>
+    </nav>
+
+    
+    <h1>Menu</h1>
+    <div class="menu-container">
+        {% for dish in dishes %}
+            <div class="dish">
+                <h2>
+                    <a href="{% url 'menu_detail' dish.id %}">
+                      {{ dish.name }}
+                    </a>
+                  </h2>
+                  <a href="{% url 'menu_detail' dish.id %}">
+                    <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+                </a>
+                
+                <p>{{ dish.description }}</p>
+                <p>Price: ${{ dish.price }}</p>
+                <form method="POST" action="{% url 'add_to_cart' dish.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
