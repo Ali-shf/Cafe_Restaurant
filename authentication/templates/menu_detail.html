@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ dish.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+</head>
+<body>
+
+<nav>
+    <a href="/menu/">← Back to Menu</a>
+</nav>
+
+<h1>{{ dish.name }}</h1>
+
+<img src="{{ dish.image.url }}" alt="{{ dish.name }}" style="max-width:300px;">
+
+<p>{{ dish.description }}</p>
+<p><strong>Price:</strong> ${{ dish.price }}</p>
+
+<form method="POST" action="{% url 'add_to_cart' dish.id %}">
+    {% csrf_token %}
+    <button type="submit">Add to Cart</button>
+</form>
+
+</body>
+</html>
