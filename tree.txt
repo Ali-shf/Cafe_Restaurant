@@ -1,0 +1,163 @@
+.
+├── authentication
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── admin.cpython-311.pyc
+│   │   ├── admin.cpython-312.pyc
+│   │   ├── apps.cpython-311.pyc
+│   │   ├── apps.cpython-312.pyc
+│   │   ├── models.cpython-311.pyc
+│   │   ├── models.cpython-312.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   ├── urls.cpython-312.pyc
+│   │   ├── views.cpython-311.pyc
+│   │   └── views.cpython-312.pyc
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   ├── 0001_initial.cpython-311.pyc
+│   │   │   └── 0001_initial.cpython-312.pyc
+│   │   └── 0001_initial.py
+│   ├── models.py
+│   ├── templates
+│   │   ├── addingmenu.html
+│   │   ├── cart.html
+│   │   ├── dish_form.html
+│   │   ├── home.html
+│   │   ├── login.html
+│   │   ├── menu_detail.html
+│   │   ├── menu_list
+│   │   ├── menu_list.html
+│   │   ├── menu.html
+│   │   ├── signup.html
+│   │   └── success_page.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── cafe
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── settings.cpython-311.pyc
+│   │   ├── settings.cpython-312.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   ├── urls.cpython-312.pyc
+│   │   ├── wsgi.cpython-311.pyc
+│   │   └── wsgi.cpython-312.pyc
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── db.sqlite3
+├── French-cafe
+├── manage.py
+├── menu
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── admin.cpython-311.pyc
+│   │   ├── admin.cpython-312.pyc
+│   │   ├── apps.cpython-311.pyc
+│   │   ├── apps.cpython-312.pyc
+│   │   ├── forms.cpython-311.pyc
+│   │   ├── forms.cpython-312.pyc
+│   │   ├── models.cpython-311.pyc
+│   │   ├── models.cpython-312.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   ├── urls.cpython-312.pyc
+│   │   ├── views.cpython-311.pyc
+│   │   └── views.cpython-312.pyc
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── __init__.cpython-312.pyc
+│   │   │   ├── 0001_initial.cpython-311.pyc
+│   │   │   ├── 0001_initial.cpython-312.pyc
+│   │   │   ├── 0002_cart.cpython-311.pyc
+│   │   │   ├── 0002_cart.cpython-312.pyc
+│   │   │   ├── 0003_cart_created_at_cart_updated_at.cpython-311.pyc
+│   │   │   └── 0003_cart_created_at_cart_updated_at.cpython-312.pyc
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_cart.py
+│   │   └── 0003_cart_created_at_cart_updated_at.py
+│   ├── models.py
+│   ├── restraratuant.code-workspace
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── ownerlogin
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── __init__.cpython-312.pyc
+│   │   ├── admin.cpython-311.pyc
+│   │   ├── admin.cpython-312.pyc
+│   │   ├── apps.cpython-311.pyc
+│   │   ├── apps.cpython-312.pyc
+│   │   ├── forms.cpython-311.pyc
+│   │   ├── forms.cpython-312.pyc
+│   │   ├── models.cpython-311.pyc
+│   │   ├── models.cpython-312.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   ├── urls.cpython-312.pyc
+│   │   ├── views.cpython-311.pyc
+│   │   └── views.cpython-312.pyc
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── __init__.cpython-311.pyc
+│   │       └── __init__.cpython-312.pyc
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── static
+│   ├── assest
+│   │   └── image
+│   │       ├── bg2.jpg
+│   │       ├── menubg.jpg
+│   │       └── pexels-brigitte-tohm-36757-239581.jpg
+│   ├── css
+│   │   ├── cart.css
+│   │   ├── form.css
+│   │   ├── home.css
+│   │   ├── login.css
+│   │   ├── menu_list.css
+│   │   ├── Menu_page.css
+│   │   ├── menu.css
+│   │   └── successfull_page.css
+│   └── media
+│       └── menu_images
+│           ├── Classic-French-Cherry-Clafoutis.webp
+│           ├── Crème_Brûlée.jpeg
+│           ├── Éclairs.jpeg
+│           ├── escargots-de-bourgogne.png
+│           ├── images.jpeg
+│           ├── perfect-apple-tarte-tatin.webp
+│           ├── Poulet_Marengo.jpg
+│           ├── quiche_lorraine.jpg
+│           ├── slow_cooker_chicken_05752_16x9_oNLkNNq.jpg
+│           ├── slow_cooker_chicken_05752_16x9.jpg
+│           ├── Sole_Meunière.png
+│           ├── Tarte_au_Citron_.jpeg
+│           ├── vegan_nN3pPQl.jpg
+│           ├── vegan.jpg
+│           └── yule-cake-shutterstock_492028351_full_width.jpg
+└── tree.txt
+
+23 directories, 138 files
