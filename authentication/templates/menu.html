@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
 </head>
 <body>
-    
+
     <nav>
         <ul>
             <li><a href="">About</a></li>
@@ -19,28 +19,45 @@
         </ul>
     </nav>
 
-    
     <h1>Menu</h1>
+
+    {% if request.user.is_staff %}
+        <div style="margin: 12px 0;">
+            <a href="{% url 'dish_create' %}">+ Add new item</a>
+        </div>
+    {% endif %}
+
     <div class="menu-container">
         {% for dish in dishes %}
             <div class="dish">
                 <h2>
                     <a href="{% url 'menu_detail' dish.id %}">
-                      {{ dish.name }}
+                        {{ dish.name }}
                     </a>
-                  </h2>
-                  <a href="{% url 'menu_detail' dish.id %}">
+                </h2>
+
+                <a href="{% url 'menu_detail' dish.id %}">
                     <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
                 </a>
-                
+
                 <p>{{ dish.description }}</p>
                 <p>Price: ${{ dish.price }}</p>
+
                 <form method="POST" action="{% url 'add_to_cart' dish.id %}">
                     {% csrf_token %}
                     <button type="submit">Add to Cart</button>
                 </form>
+
+                {% if request.user.is_staff %}
+                    <div style="margin-top: 8px;">
+                        <a href="{% url 'dish_update' dish.id %}">Edit</a>
+                    </div>
+                {% endif %}
             </div>
+        {% empty %}
+            <p>No items found.</p>
         {% endfor %}
     </div>
+
 </body>
 </html>

@@ -1,0 +1,12 @@
+<h1>
+    {% if mode == "create" %}Add new item{% else %}Edit item{% endif %}
+  </h1>
+  
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">
+      {% if mode == "create" %}Create{% else %}Save changes{% endif %}
+    </button>
+  </form>
+  

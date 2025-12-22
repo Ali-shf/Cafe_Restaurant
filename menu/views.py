@@ -6,6 +6,32 @@ from decimal import Decimal
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from .models import MenuItem 
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import get_object_or_404, redirect, render
+from .forms import DishForm
+
+@staff_member_required(login_url="/ownerlogin/login/")  # مسیر لاگین خودتان را مطابق پروژه تنظیم کنید
+def dish_create(request):
+    if request.method == "POST":
+        form = DishForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("menu_list")  # یا هر صفحه‌ای که بعد از ساخت می‌خواهید
+    else:
+        form = DishForm()
+    return render(request, "menu/admin/dish_form.html", {"form": form, "mode": "create"})
+
+@staff_member_required(login_url="/ownerlogin/login/")
+def dish_update(request, pk):
+    dish = get_object_or_404(Dish, pk=pk)
+    if request.method == "POST":
+        form = DishForm(request.POST, request.FILES, instance=dish)
+        if form.is_valid():
+            form.save()
+            return redirect("menu_detail", pk=dish.pk)  # یا menu_list
+    else:
+        form = DishForm(instance=dish)
+    return render(request, "menu/admin/dish_form.html", {"form": form, "mode": "update", "dish": dish})
 
 
 @login_required(login_url='/login/')
