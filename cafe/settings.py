@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'authentication',
     'menu',
     'ownerlogin',
+    'rest_framework',
+    'drf_spectacular',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +138,18 @@ STATICFILES_DIRS=[
 MEDIA_ROOT=os.path.join(BASE_DIR,'static/media')
 
 
+# DRE settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Cafe and restaurant api',
+    'DESCRIPTION': 'Digital menu website',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
