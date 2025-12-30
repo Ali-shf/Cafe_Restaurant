@@ -1,7 +1,8 @@
 from django.db import models
 from authentication.models import *
 from cloudinary.models import CloudinaryField
-
+from authentication.models import User
+from django.db.models import Avg
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=100)
@@ -9,11 +10,19 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     dish_id = models.IntegerField(default=0)
     quantity = models.IntegerField(blank=True)
-    rating = ...
 
 
     def __str__(self):
         return self.name
+    
+    @property
+    def average_rating(self):
+        return (
+            Rating.objects
+            .filter(item=self)
+            .aggregate(avg=Avg('rating'))['avg']
+            or 0
+        )
 
 
 class MenuItemImage(models.Model):
@@ -53,3 +62,23 @@ class Stock(models.Model):
         return total
     
 
+
+
+class Rating(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='ratings',
+    )
+    item = models.ForeignKey(
+        MenuItem,
+        on_delete=models.CASCADE,
+        related_name='ratings',
+    )
+    rating = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        unique_together = ('user', 'item')
+
+    def __str__(self) -> str:
+        return f'{self.item.name} rated {self.rating} by {self.user.username}'
