@@ -12,18 +12,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import cloudinary
-import cloudinary.uploader
+# import cloudinary
+# import cloudinary.uploader
+from dotenv import load_dotenv
 
 
-
-# Cloudinary Configuration
-cloudinary.config(
-    cloud_name = 'di0rjibvf',
-    api_key = '739886762418577',
-    api_secret = '1MF7mt6uESfeiL7prOr3eK7FzVY',
-    secure= True,
-)
 
 # Upload an image
 # upload_result = cloudinary.uploader.upload('cafe/images')
@@ -31,6 +24,18 @@ cloudinary.config(
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / '.env.dev')
+
+
+
+# Cloudinary Configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Quick-start development settings - unsuitable for production

@@ -9,6 +9,7 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     dish_id = models.IntegerField(default=0)
     quantity = models.IntegerField(blank=True)
+    rating = ...
 
 
     def __str__(self):
@@ -50,3 +51,5 @@ class Stock(models.Model):
     def get_difference(self):
         total = self.item.quantity - self.sold_quantity
         return total
+    
+
