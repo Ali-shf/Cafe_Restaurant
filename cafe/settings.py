@@ -12,6 +12,23 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api 
+
+
+
+# Cloudinary Configuration
+cloudinary.config(
+    cloud_name = 'di0rjibvf',
+    aip_key = '739886762418577',
+    api_secret = 'ZXQ2S',
+    secure= True,
+)
+
+# Upload an image
+upload_result = cloudinary.uploader.upload('')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +61,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_spectacular',
     'rest_framework_simplejwt',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [

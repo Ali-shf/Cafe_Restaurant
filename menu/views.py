@@ -6,6 +6,17 @@ from decimal import Decimal
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 from .models import MenuItem 
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.parsers import MultiPartParser, FormParser
+from .models import MenuItem
+from menu.serializers import MenuItemSerializer
+
+
+
+class MenuItemViewSet(ModelViewSet):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 @login_required(login_url='/login/')
