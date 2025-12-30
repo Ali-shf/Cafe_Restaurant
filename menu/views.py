@@ -8,8 +8,9 @@ from django.db.models import Sum
 from .models import MenuItem 
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import MultiPartParser, FormParser
-from .models import MenuItem
-from menu.serializers import MenuItemSerializer
+from .models import MenuItem, Stock
+from menu.serializers import MenuItemSerializer, StockSerializer
+from rest_framework.permissions import IsAdminUser
 
 
 
@@ -17,6 +18,12 @@ class MenuItemViewSet(ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
     parser_classes = [MultiPartParser, FormParser]
+
+
+class StockViewSet(ModelViewSet):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer
+    permission_classes = [IsAdminUser]
 
 
 @login_required(login_url='/login/')

@@ -8,6 +8,8 @@ class MenuItem(models.Model):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     dish_id = models.IntegerField(default=0)
+    quantity = models.IntegerField(blank=True)
+
 
     def __str__(self):
         return self.name
@@ -35,3 +37,16 @@ class Cart(models.Model):
         return f"{self.dish.name} - {self.user.username}"
     
 
+
+
+class Stock(models.Model):
+    sold_quantity = models.IntegerField(blank=True, default=0)
+    item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.item.name
+    
+    @property
+    def get_difference(self):
+        total = self.item.quantity - self.sold_quantity
+        return total

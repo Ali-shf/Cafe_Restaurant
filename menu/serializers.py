@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from menu.models import MenuItem, MenuItemImage
+from menu.models import MenuItem, MenuItemImage, Stock
 
 
 
@@ -42,3 +42,18 @@ class MenuItemSerializer(serializers.ModelSerializer):
             )
 
         return menu_item
+
+
+
+
+
+class StockSerializer(serializers.ModelSerializer):
+    available_quantity = serializers.ReadOnlyField()
+    class Meta:
+        model = Stock
+        fields = [
+            'id',
+            'item',
+            'sold_quantity',
+            'available_quantity',
+        ]

@@ -14,20 +14,19 @@ from pathlib import Path
 import os
 import cloudinary
 import cloudinary.uploader
-import cloudinary.api 
 
 
 
 # Cloudinary Configuration
 cloudinary.config(
     cloud_name = 'di0rjibvf',
-    aip_key = '739886762418577',
-    api_secret = 'ZXQ2S',
+    api_key = '739886762418577',
+    api_secret = '1MF7mt6uESfeiL7prOr3eK7FzVY',
     secure= True,
 )
 
 # Upload an image
-upload_result = cloudinary.uploader.upload('')
+# upload_result = cloudinary.uploader.upload('cafe/images')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -130,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
