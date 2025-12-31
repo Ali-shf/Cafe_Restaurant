@@ -4,19 +4,38 @@ from authentication import *
 from .models import *
 from decimal import Decimal
 from django.contrib.auth.decorators import login_required
-from django.db.models import Sum
+from django.db.models import Sum, Avg
 from .models import MenuItem 
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import MultiPartParser, FormParser
-from .models import MenuItem
-from menu.serializers import MenuItemSerializer
+from .models import MenuItem, Stock, Rating
+from menu.serializers import MenuItemSerializer, StockSerializer, RatingSerializer
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 
 
 class MenuItemViewSet(ModelViewSet):
-    queryset = MenuItem.objects.all()
+    queryset = (
+    MenuItem.objects
+    .annotate(average_rating=Avg('ratings__rating'))
+    .prefetch_related('images')
+)
     serializer_class = MenuItemSerializer
     parser_classes = [MultiPartParser, FormParser]
+
+class RatingViewSet(ModelViewSet):
+    serializer_class = RatingSerializer
+    queryset = Rating.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
+
+
+class StockViewSet(ModelViewSet):
+    queryset = Stock.objects.select_related('item')
+    serializer_class = StockSerializer
+    permission_classes = [IsAdminUser]
 
 
 @login_required(login_url='/login/')
