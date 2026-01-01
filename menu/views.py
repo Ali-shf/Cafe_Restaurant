@@ -9,10 +9,15 @@ from .models import MenuItem
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import MultiPartParser, FormParser
 from .models import MenuItem, Stock, Rating
-from menu.serializers import MenuItemSerializer, StockSerializer, RatingSerializer
+from menu.serializers import MenuItemSerializer, StockSerializer, RatingSerializer,SearchMenuItemSerializer
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.filters import SearchFilter
 
-
+class SearchMenuItemViewSet(ModelViewSet):
+    queryset = MenuItem.objects.all()
+    serializer_class = SearchMenuItemSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['name', 'description']
 
 class MenuItemViewSet(ModelViewSet):
     queryset = (
