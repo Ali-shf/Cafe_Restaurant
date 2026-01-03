@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'rest_framework_simplejwt',
     'cloudinary',
+    'authentication.apps.SignalConfig',
 ]
 
 MIDDLEWARE = [
@@ -151,7 +152,7 @@ MEDIA_ROOT='/media/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'authentication.User'
+AUTH_USER_MODEL = 'authentication.CustomUser'
 
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')

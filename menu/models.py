@@ -1,7 +1,7 @@
 from django.db import models
 from authentication.models import *
 from cloudinary.models import CloudinaryField
-from authentication.models import User
+from authentication.models import CustomUser
 from django.db.models import Avg
 
 class MenuItem(models.Model):
@@ -37,7 +37,7 @@ class MenuItemImage(models.Model):
         return f'Image for {self.menu_item.name}'
     
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     dish = models.ForeignKey(MenuItem,on_delete=models.CASCADE)
     is_ordered = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)  
@@ -66,7 +66,7 @@ class Stock(models.Model):
 
 class Rating(models.Model):
     user = models.ForeignKey(
-        User,
+        CustomUser,
         on_delete=models.CASCADE,
         related_name='ratings',
     )
