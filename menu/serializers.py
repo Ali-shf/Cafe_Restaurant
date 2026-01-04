@@ -8,7 +8,12 @@ from menu.models import (
 
 from authentication.models import User
 
+class SearchMenuItemSerializer(serializers.ModelSerializer):
+    average_rating = serializers.ReadOnlyField()
 
+    class Meta:
+        model = MenuItem
+        fields = '__all__'
 
 class MenuItemImageSerializer(serializers.ModelSerializer):
     class Meta:
