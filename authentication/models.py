@@ -1,13 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
-# from authentication.managers import CustomUserManager
+from authentication.managers import CustomUserManager
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
 class CustomUser(AbstractUser):
-    # username = None
+    username = None
     email = models.EmailField(_("email address"), unique=True)
     GENDER_CHOICES = [
         ('M', 'Male'),
@@ -35,15 +35,16 @@ class CustomUser(AbstractUser):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+    objects = CustomUserManager()
 
     
     
 
 
     def __str__(self) -> str:
-        return self.username
+        return self.email
 
 class AdminProfile(models.Model):
     user = models.OneToOneField(
@@ -56,7 +57,7 @@ class AdminProfile(models.Model):
 
 
     def __str__(self) -> str:
-        return self.user.username
+        return self.user.email
     
 
     def is_staff(self):
@@ -77,6 +78,6 @@ class CustomerProfile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.user.username
+        return self.user.email
     
     

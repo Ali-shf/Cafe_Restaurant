@@ -1,9 +1,9 @@
 from authentication.models import AdminProfile
-from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
-@receiver(pre_save, sender=AdminProfile)
+@receiver(post_save, sender=AdminProfile)
 def make_user_staff(sender, instance, created, **kwargs):
     if created:
         user = instance.user

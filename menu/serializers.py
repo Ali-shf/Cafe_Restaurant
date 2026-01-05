@@ -6,7 +6,7 @@ from menu.models import (
     Rating,
 )
 
-from authentication.models import User
+from authentication.models import CustomUser
 
 
 
@@ -35,7 +35,7 @@ class RatingSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     ratings = RatingSerializer(many=True, read_only=True)
     class Meta:
-        model = User
+        model = CustomUser
         fields = [
             'id',
             'first_name',

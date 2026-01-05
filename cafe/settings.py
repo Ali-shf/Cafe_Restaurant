@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'rest_framework_simplejwt',
     'cloudinary',
-    'authentication.apps.SignalConfig',
+    # 'authentication.apps.AuthenticationConfig',
 ]
 
 MIDDLEWARE = [

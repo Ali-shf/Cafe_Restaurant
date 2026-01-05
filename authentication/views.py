@@ -3,7 +3,7 @@ from .models import *
 from django.contrib.auth import authenticate,login,logout
 from menu.urls import *
 from django.shortcuts import render, redirect
-from .models import User 
+from .models import CustomUser 
 from .urls import *
 from menu.views import *
 from django.contrib import messages
@@ -56,7 +56,7 @@ def signup(request):
         confirm_password = request.POST.get('confirm_password')
 
         # Validation
-        user_check = User.objects.filter(username=username)
+        user_check = CustomUser.objects.filter(username=username)
         if user_check.exists():
             context["error"] = "Username already exists."
             return render(request, "signup.html", context)
@@ -64,7 +64,7 @@ def signup(request):
         
 
         # Create the user
-        new_user = User(
+        new_user = CustomUser(
             username=username,
             first_name=firstname,
             last_name=lastname,

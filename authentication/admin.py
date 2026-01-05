@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from .models import CustomUser
 User = get_user_model()
 
-@admin.register(User)
-class UserAdmin(BaseUserAdmin):
-    list_display = ('username', 'email', 'is_staff', 'is_active')  # Customize as needed
-    ordering = ('username',)
+# @admin.register(User)
+# class UserAdmin(BaseUserAdmin):
+#     list_display = ('username', 'email', 'is_staff', 'is_active')  # Customize as needed
+#     ordering = ('username',)
