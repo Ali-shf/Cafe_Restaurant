@@ -6,9 +6,6 @@ from menu.models import (
     Rating,
 )
 
-from authentication.models import CustomUser
-
-
 
 class MenuItemImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,20 +27,6 @@ class RatingSerializer(serializers.ModelSerializer):
 
 
 
-
-
-class UserSerializer(serializers.ModelSerializer):
-    ratings = RatingSerializer(many=True, read_only=True)
-    class Meta:
-        model = CustomUser
-        fields = [
-            'id',
-            'first_name',
-            'last_name',
-            'username',
-            'email',
-            'ratings',
-        ]
 
 
 class MenuItemSerializer(serializers.ModelSerializer):
